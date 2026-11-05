@@ -1,0 +1,99 @@
+/*Mega Menu Templates - shared across all story sites (NEW_MEGAMENU_PLAN.md Phases 2-4)*/
+/*------------------------------------------/*
+ MEGA MENU - SHARED VARS + OPEN/CLOSE
+/*------------------------------------------*/
+.mgMenu { --mgm-bg: #F9F9F9; --mgm-title-color: #17181C; --mgm-text: #4F525C; --mgm-accent: #FF3227; --mgm-radius: 6px; --mgm-pad: clamp(32px, 2.5vw, 300px); --mgm-fs-title: clamp(32px, 2.5vw, 300px); --mgm-fs-group: clamp(16px, 1.042vw, 300px); --mgm-fs-item: clamp(14px, 0.885vw, 300px); --mgm-title-w: clamp(210px, 15.104vw, 440px); --mgm-gap-cols: clamp(48px, 4.167vw, 300px); --mgm-gap-title: clamp(12px, 0.833vw, 300px); --mgm-gap-item: clamp(3px, 0.208vw, 300px); --mgm-banner-w: clamp(200px, 14.063vw, 410px); --mgm-banner-h: clamp(203px, 14.271vw, 416px); --mgm-banner-radius: 5px; --mgm-font-title: inherit; --mgm-font-item: inherit; }
+.mgMenu { display: none; position: fixed; left: 0; right: 0; top: auto; width: 100%; z-index: 1000; }
+li.has-sub.has-megamenu:hover > .mgMenu, li.has-sub.has-megamenu:focus-within > .mgMenu { display: block; }
+/**/
+
+/*------------------------------------------/*
+ MEGA MENU - TEMPLATE 1
+/*------------------------------------------*/
+.mgMenu--t1 .mgMenu-inner { width: fit-content; margin-inline: auto; display: flex; flex-direction: row; align-items: flex-start; gap: var(--mgm-gap-cols); background: var(--mgm-bg); border-radius: var(--mgm-radius); padding: var(--mgm-pad); text-align: start; }
+.mgMenu--t1 .mgMenu-title { max-width: var(--mgm-title-w); font-family: var(--mgm-font-title); font-size: var(--mgm-fs-title); line-height: 0.95; letter-spacing: -0.01em; color: var(--mgm-title-color); text-align: start; }
+.mgMenu--t1 .mgMenu-groups { display: flex; flex-direction: row; align-items: flex-start; gap: var(--mgm-gap-cols); }
+.mgMenu--t1 .mgMenu-group { display: flex; flex-direction: column; gap: var(--mgm-gap-title); }
+.mgMenu--t1 .mgMenu-groupTitle { margin: 0; padding: 0; font-family: var(--mgm-font-title); font-size: var(--mgm-fs-group); line-height: 1.2; color: var(--mgm-title-color); text-align: start; white-space: nowrap; }
+.mgMenu--t1 .mgMenu-groupTitle a { color: inherit; font-family: inherit; font-size: inherit; line-height: inherit; text-decoration: none; padding: 0; display: inline; }
+.mgMenu--t1 .mgMenu-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--mgm-gap-item); }
+.mgMenu--t1 .mgMenu-item { margin: 0; padding: 0; width: auto; }
+.mgMenu--t1 .mgMenu-item a { position: relative; display: inline-block; padding: 0; margin: 0; font-family: var(--mgm-font-item); font-size: var(--mgm-fs-item); line-height: 1.5; letter-spacing: 0.01em; color: var(--mgm-text); text-decoration: none; white-space: nowrap; background: none; }
+.mgMenu--t1 .mgMenu-item a::after { content: ""; position: absolute; inset-inline: 0; bottom: 0; height: 2px; border-radius: 64px; background: var(--mgm-accent); opacity: 0; transition: 0.3s ease opacity; }
+.mgMenu--t1 .mgMenu-banner { position: relative; width: var(--mgm-banner-w); height: var(--mgm-banner-h); flex-shrink: 0; }
+.mgMenu--t1 .mgMenu-banner a { display: block; width: 100%; height: 100%; padding: 0; }
+.mgMenu--t1 .mgMenu-bannerImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: var(--mgm-banner-radius); display: block; opacity: 0; transition: 0.3s ease opacity; }
+.mgMenu--t1 .mgMenu-bannerImg.active { opacity: 1; }
+
+@media(min-width: 1025px) {
+    .mgMenu--t1 .mgMenu-item a:hover::after { opacity: 1; }
+    .mgMenu--t1 .mgMenu-item a:hover { color: var(--mgm-text); }
+}
+/**/
+  
+/*------------------------------------------/*
+ MEGA MENU - TEMPLATE 2
+/*------------------------------------------*/
+.mgMenu--t2 { --mgm-bg: #FFFFFF; --mgm-title-color: #1A1A1A; --mgm-text: #1A1A1A; --mgm-radius: 0px; --mgm-border: 1px solid #1A1A1A; --mgm-pad: clamp(24px, 1.667vw, 300px); --mgm-fs-group: clamp(22px, 1.875vw, 300px); --mgm-fs-btn: clamp(15px, 0.938vw, 300px); --mgm-btn-h: clamp(40px, 2.604vw, 100px); --mgm-btn-pad-inline: clamp(18px, 1.25vw, 300px); --mgm-gap-group: clamp(8px, 0.625vw, 300px); --mgm-gap-row: clamp(8px, 0.521vw, 300px); --mgm-groups-w: clamp(250px, 18.75vw, 640px); --mgm-groups-pad-inline: clamp(22px, 1.563vw, 300px); --mgm-pane-w: clamp(200px, 14.583vw, 500px); --mgm-media-w: clamp(180px, 12.917vw, 440px); --mgm-chevron-w: clamp(5px, 0.313vw, 12px); }
+.mgMenu--t2 .mgMenu-inner { width: fit-content; margin-inline: auto; display: flex; flex-direction: column; background: var(--mgm-bg); border: var(--mgm-border); border-radius: var(--mgm-radius); text-align: start; }
+.mgMenu--t2 .mgMenu-title { padding: var(--mgm-pad) var(--mgm-pad) 0; font-family: var(--mgm-font-title); font-size: var(--mgm-fs-title); line-height: 0.95; letter-spacing: -0.01em; color: var(--mgm-title-color); text-align: start; }
+.mgMenu--t2 .mgMenu-body { display: flex; flex-direction: row; align-items: stretch; }
+.mgMenu--t2 .mgMenu-groups { display: flex; flex-direction: column; align-items: stretch; gap: var(--mgm-gap-group); width: var(--mgm-groups-w); padding: var(--mgm-pad) var(--mgm-groups-pad-inline); border-inline-end: var(--mgm-border); }
+.mgMenu--t2 .mgMenu-group { display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: var(--mgm-gap-row); padding: 0; text-decoration: none; background: none; }
+.mgMenu--t2 .mgMenu-groupTitle { margin: 0; padding: 0; font-family: var(--mgm-font-title); font-size: var(--mgm-fs-group); line-height: 0.85; color: var(--mgm-title-color); text-align: start; }
+.mgMenu--t2 .mgMenu-chevron { width: var(--mgm-chevron-w); height: auto; flex-shrink: 0; color: var(--mgm-title-color); opacity: 0; transition: 0.3s ease opacity; }
+.mgMenu--t2 .mgMenu-group.active .mgMenu-chevron { opacity: 1; }
+[dir="ltr"] .mgMenu--t2 .mgMenu-chevron { transform: scaleX(-1); }
+.mgMenu--t2 .mgMenu-panes { display: grid; width: var(--mgm-pane-w); }
+.mgMenu--t2 .mgMenu-pane { grid-area: 1 / 1; display: flex; flex-direction: column; align-items: stretch; gap: var(--mgm-pad); padding: var(--mgm-pad); opacity: 0; visibility: hidden; transition: 0.3s ease opacity, 0.3s visibility; }
+.mgMenu--t2 .mgMenu-pane.active { opacity: 1; visibility: visible; }
+.mgMenu--t2 .mgMenu-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--mgm-gap-item); }
+.mgMenu--t2 .mgMenu-item { margin: 0; padding: 0; width: auto; }
+.mgMenu--t2 .mgMenu-item a { display: inline-block; padding: 0; margin: 0; font-family: var(--mgm-font-item); font-size: var(--mgm-fs-item); line-height: 1.45; letter-spacing: -0.01em; color: var(--mgm-text); text-decoration: none; background: none; }
+.mgMenu--t2 .mgMenu-paneBtn { display: flex; justify-content: center; align-items: center; height: var(--mgm-btn-h); padding: 0 var(--mgm-btn-pad-inline); margin-block-start: auto; border: var(--mgm-border); font-family: var(--mgm-font-title); font-size: var(--mgm-fs-btn); line-height: 1.2; color: var(--mgm-title-color); text-align: center; text-decoration: none; background: none; }
+.mgMenu--t2 .mgMenu-media { position: relative; width: var(--mgm-media-w); align-self: stretch; margin: var(--mgm-pad); margin-inline-start: 0; }
+.mgMenu--t2 .mgMenu-bannerImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: var(--mgm-border); display: block; opacity: 0; transition: 0.3s ease opacity; }
+.mgMenu--t2 .mgMenu-bannerImg.active { opacity: 1; }
+/**/
+
+/*------------------------------------------/*
+ MEGA MENU - MOBILE (TEMPLATES 1-3)
+/*------------------------------------------*/
+/*Skins the legacy slide-in shells (li.megaMenuSection + menu-available/menu-active) when megaMenuMobile.cshtml renders the panel content. Figma: richkid - Hebrew, node 1572-8614 (375 base).*/
+@media(max-width: 1024px) {
+    .mgMenuMob { --mgm-mob-bg: #F7F7F7; --mgm-mob-title-color: #17181C; --mgm-mob-text: #4F525C; --mgm-mob-divider: rgba(0, 0, 0, 0.1); --mgm-mob-pad-top: 100px; --mgm-mob-pad-inline: 20px; --mgm-mob-pad-bottom: 24px; --mgm-mob-gap: 32px; --mgm-mob-gap-top: 16px; --mgm-mob-gap-title: 8px; --mgm-mob-gap-item: 4px; --mgm-mob-fs-back: 14px; --mgm-mob-fs-group: 16px; --mgm-mob-fs-item: 16px; --mgm-mob-fs-row: 24px; --mgm-mob-gap-row: 16px; --mgm-mob-banner-h: 340px; --mgm-mob-banner-radius: 5px; --mgm-mob-caption-pad: 61px 20px 20px; --mgm-font-title: inherit; --mgm-font-item: inherit; }
+    .mgMenuMob.mgMenuMob--t2 { --mgm-mob-bg: #FFFFFF; --mgm-mob-title-color: #1A1A1A; --mgm-mob-text: #1A1A1A; --mgm-mob-divider: #1A1A1A; --mgm-mob-banner-radius: 0px; --mgm-mob-banner-border: 1px solid #1A1A1A; }
+    :is(#header2, #main-header) ul.menu li.megaMenuSection.mgMenuMob { background: var(--mgm-mob-bg); padding: 0; text-align: start; overflow-y: auto; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-inner { display: flex; flex-direction: column; gap: var(--mgm-mob-gap); min-height: 100%; padding: var(--mgm-mob-pad-top) var(--mgm-mob-pad-inline) var(--mgm-mob-pad-bottom); }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-top { display: flex; flex-direction: column; align-items: flex-start; gap: var(--mgm-mob-gap-top); padding: 0 0 var(--mgm-mob-gap-top); border-bottom: 1px solid var(--mgm-mob-divider); }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-back { display: flex; align-items: center; gap: 5px; margin: 0; padding: 0; border: 0; background: none; font-family: var(--mgm-font-item); font-size: var(--mgm-mob-fs-back); line-height: 1.4; letter-spacing: 0.01em; color: var(--mgm-mob-text); }
+    .mgMenuMob .mgMenuMob-chevron { width: 7px; height: auto; flex-shrink: 0; color: var(--mgm-mob-text); transform: scaleX(-1); }
+    [dir="ltr"] .mgMenuMob .mgMenuMob-chevron { transform: none; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-group { display: flex; flex-direction: column; align-items: stretch; gap: var(--mgm-mob-gap-title); margin: 0; position: static; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-groupTitle { margin: 0; padding: 0; font-family: var(--mgm-font-title); font-size: var(--mgm-mob-fs-group); line-height: 1.5; letter-spacing: 0.01em; color: var(--mgm-mob-title-color); text-align: start; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-groupTitle a { display: inline; margin: 0; padding: 0; font-family: inherit; font-size: inherit; line-height: inherit; color: inherit; text-decoration: none; background: none; }
+    /*drill-down group rows (Data.ShowThirdScreenInMobile) - the full-menu panel shows rows that open the per-group panels (Figma 1572-8517); rows styled like the screen-1 nav rows*/
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-rows { display: flex; flex-direction: column; align-items: stretch; gap: var(--mgm-mob-gap-row); }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-groupRow { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; margin: 0; padding: 0; border: 0; background: none; font-family: var(--mgm-font-title); font-size: var(--mgm-mob-fs-row); line-height: 1.3; letter-spacing: 0.01em; color: var(--mgm-mob-title-color); text-align: start; text-decoration: none; }
+    .mgMenuMob .mgMenuMob-rowArrow { width: 8px; height: auto; flex-shrink: 0; color: var(--mgm-mob-title-color); }
+    [dir="ltr"] .mgMenuMob .mgMenuMob-rowArrow { transform: scaleX(-1); }
+    /*group panel must paint above the full-menu panel when opened from it - group sections precede the full panel in DOM*/
+    :is(#header2, #main-header) ul.menu li.mgMenuMob.megaMenuGroupSection.menu-active { z-index: 10; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: stretch; gap: var(--mgm-mob-gap-item); }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-item { display: block; width: 100%; margin: 0; padding: 0; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-item a { display: inline-block; margin: 0; padding: 0; width: auto; font-family: var(--mgm-font-item); font-size: var(--mgm-mob-fs-item); line-height: 1.4; letter-spacing: 0.01em; color: var(--mgm-mob-text); text-align: start; text-decoration: none; background: none; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-banner { position: relative; width: 100%; height: var(--mgm-mob-banner-h); flex-shrink: 0; margin-block-start: auto; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-banner > a { display: block; width: 100%; height: 100%; margin: 0; padding: 0; }
+    .mgMenuMob .mgMenuMob-bannerImg { width: 100%; height: 100%; object-fit: cover; border: var(--mgm-mob-banner-border, 1px solid rgba(255, 255, 255, 0.08)); border-radius: var(--mgm-mob-banner-radius); display: block; }
+    :is(#header2, #main-header) ul.menu li.mgMenuMob .mgMenuMob-caption { position: absolute; inset-inline: 0; bottom: 0; display: flex; justify-content: flex-start; align-items: flex-end; margin: 0; padding: var(--mgm-mob-caption-pad); background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%); border-radius: var(--mgm-mob-banner-radius); font-family: var(--mgm-font-item); font-size: var(--mgm-mob-fs-item); line-height: 1.4; letter-spacing: 0.01em; color: #FFFFFF; text-align: start; text-decoration: none; }
+
+    /*mobile nav rows (Figma screen 1) - applied only on sites with a new-template mega menu (ul.menu gets .mgMenuNav from header.cshtml / header-new.cshtml)*/
+    :is(#header2, #main-header) ul.menu.mgMenuNav { --mgm-nav-color: #17181C; --mgm-nav-fs: 24px; --mgm-nav-gap: 16px; }
+    :is(#header2, #main-header) ul.menu.mgMenuNav > li:not(.megaMenuSection) > a { font-family: var(--mgm-font-title); font-size: var(--mgm-nav-fs); line-height: 1.3; letter-spacing: 0.01em; color: var(--mgm-nav-color); text-align: start; }
+    :is(#header2, #main-header) ul.menu.mgMenuNav > li:not(.megaMenuSection) { margin-block-end: var(--mgm-nav-gap); }
+    :is(#header2, #main-header) ul.menu.mgMenuNav > li.has-megamenu > button svg { width: 16px; height: 16px; fill: var(--mgm-nav-color); }
+    /*whole nav row opens the mega menu - the arrow button stretches over the entire li (covers the category link too)*/
+    :is(#header2, #main-header) ul.menu.mgMenuNav > li.has-sub.has-megamenu { position: relative; }
+    :is(#header2, #main-header) ul.menu.mgMenuNav > li.has-sub.has-megamenu > button { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: none; display: flex; align-items: center; justify-content: flex-end; }
+}
+/**/

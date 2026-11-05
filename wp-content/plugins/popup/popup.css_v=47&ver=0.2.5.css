@@ -1,0 +1,1991 @@
+@font-face {
+  font-family: 'PingHL';
+  src: url('fonts/PingHL-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PingHL';
+  src: url('fonts/PingHL-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+.qs-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.5);
+  z-index: 9999;
+  font-family: inherit;
+  overflow: hidden;
+}
+.qs-overlay[data-open="1"] { display: flex; }
+
+.qs-modal {
+  position: relative;
+  background: #fff; color: #111;
+  width:420px;
+height:660px;
+  overflow: hidden;
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+}
+
+@media (max-width: 460px) {
+  /* ה-CSS variables של גודל הכרטיס – נעדכן לאחר שגישת ה-padding מטפלת ברוחב */
+  #qs-popup {
+    --card-width: 100%;
+    --card-height: auto;
+  }
+}
+
+.qs-close {
+  position: absolute; top: 8px; inset-inline-end: 10px;
+  font-size: 22px; line-height: 1; background: transparent; border: 0; cursor: pointer;
+}
+
+.qs-header { padding: 0px 20px 6px; }
+/*.qs-header h2 { margin: 0; font-size: 20px; }*/
+
+.qs-body { padding: 0 20px 16px; }
+.qs-footer { padding: 0 20px 20px; }
+
+.qs-page-title { margin: 10px 0 6px; font-size: 18px; font-weight: 700; color: #222; }
+
+.qs-field { margin: 12px 0; display: block; border: none;}
+.qs-field label { display: block; margin-bottom: 6px; }
+.qs-inline { display: inline-flex; align-items: center; gap: 8px; margin-inline-end: 14px; }
+
+.qs-input,
+.qs-field input[type="text"],
+.qs-field input[type="email"],
+.qs-field input[type="tel"],
+.qs-field input[type="date"],
+.qs-field select,
+.qs-field textarea {
+  width: 100%; padding: 10px 12px;
+  border-radius: 8px; border: 1px solid #d9d9d9; outline: none;
+}
+
+.qs-field-title { margin: 16px 0 4px; font-weight: 700; font-size: 18px; }
+
+.qs-pager {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; padding: 10px 0 0;
+}
+#qs-popup .qs-pager .qs-arrow { 
+width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+     background: var(--qs-pager-color, #0a5ea9);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 14px rgba(10, 94, 169, .25);
+
+}
+.qs-arrow:disabled { opacity: .5; cursor: default; }
+.qs-dots { display: flex; gap: 8px; }
+#qs-popup nav.qs-pager .qs-dots > button.qs-dot{
+    width: 34px;
+    height: 10px;
+    border-radius: 6px;
+    background: #e3e6ef;
+    border: 1px solid #d8ddea;
+}
+
+.qs-dot.is-active { 
+
+	background: var(--qs-pager-color, #aab2c6) !important; 
+  border-color: var(--qs-pager-color, #aab2c6) !important; 
+}
+
+.qs-btn-primary {
+  background: #0057ff; color: #fff; border: 0;
+  padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  font-family: inherit;
+}
+.qs-btn-primary:hover { filter: brightness(1.05); }
+
+.qs-empty { margin: 10px 0; color: #777; }
+/* מסגרת סביב שדות טקסטואליים בלבד */
+.qs-field.qs-framed {
+  border: 1px solid #cbd5e1;       /* אפור עדין */
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+}
+
+/* מנקים את גבול השדה הפנימי כדי שלא תהיה מסגרת כפולה */
+.qs-field.qs-framed .qs-input:not(select) {
+  border: 0;
+  padding: 0;
+}
+
+/* שומרים על מרווח תקין בין התווית לשדה */
+.qs-field.qs-framed label {
+  margin-bottom: 6px;
+}
+/* הוסף ל-popup.css */
+.qs-noscroll { overflow: hidden; }
+/* בסיס – צבע וגודל טקסט לכל המודל */
+#qs-popup .qs-modal {
+  color: var(--qs-text-color, #111) !important;
+  font-size: var(--qs-font-size, 16px) !important;
+	  font-family: var(--qs-font-family, inherit) !important;
+}
+
+
+#qs-popup .qs-header h2,
+#qs-popup .qs-page-title,
+#qs-popup .qs-field label {
+  color: var(--qs-text-color, #111) !important;
+	font-size: var(--qs-font-size, 16px) !important;
+		  font-family: var(--qs-font-family, inherit) !important;
+
+}
+
+#qs-popup .qs-header h2
+ {
+ 	  font-family: var(--qs-font-family, inherit) !important;
+
+  font-size: min(var(--qs-font-size, 16px), 20px) !important;
+}
+/* שדות וכפתורים מקבלים גם הם את גודל הטקסט המבוקש */
+#qs-popup .qs-input,
+#qs-popup .qs-btn-primary
+ {
+  font-size: var(--qs-font-size, 16px) !important;
+	 	  font-family: var(--qs-font-family, inherit) !important;
+
+}
+
+/* אופציונלי: צבע placeholder (שמרני, בלי color-mix) */
+#qs-popup .qs-input::placeholder {
+  color: rgba(0,0,0,.45);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* טיפוס למשתנה שניתן לאנימציה רציפה */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
+/* אנימציה שמשנה רק את --rotate (לא נוגעת ב-transform) */
+@keyframes glowVarRotate {
+  to { --rotate: 360deg; }
+}
+
+#qs-popup {
+  --card-height: 660px;
+  --card-width: 420px;
+}
+
+
+
+
+#qs-popup .magic_card{
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+  isolation: isolate; /* מבטיח stacking context יציב לפסאודו-אלמנטים עם z-index:-1 */
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+}
+
+#qs-popup .magic_card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.magic_card:hover:before, .magic_card:hover:after {
+  opacity: 1; /* שומר את הזוהר גלוי ורציף בזמן hover */
+}
+
+
+#qs-popup .magic_card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: glowVarRotate  2.5s linear infinite;
+    pointer-events: none; /* מונע ממנו לגנוב אירועי עכבר */
+}
+
+#qs-popup .magic_card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /* transform: scale(0.8); */
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+    transition: opacity .5s;
+    animation: glowVarRotate  2.5s linear infinite;
+    top: -1%;
+    pointer-events: none; /* שכבת ה-blur לא תחסום זיהוי hover על הכרטיס */
+}
+
+@keyframes qsCpSpin  {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+
+
+
+
+
+
+
+#qs-popup .box {
+  width: 420px;
+  height: 660px;
+  max-width: 100%;
+  max-height: calc(100vh - 120px);
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+      from var(--border-angle),
+      #213,
+      #112 5%,
+      #112 60%,
+      #213 95%
+    );
+  border: solid 5px transparent;
+  border-radius: 2em!important;
+  --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, #08f, #f03 99%, transparent);
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box, var(--main-bg) border-box!important;
+  background-position: center center;
+  -webkit-animation: qs-bg-spin 3s linear infinite;
+          animation: qs-bg-spin 3s linear infinite;
+	overflow:hidden;
+}
+@-webkit-keyframes qs-bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+@keyframes qs-bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+#qs-popup .box:hover {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*:root {
+  font-size: 10px;
+  --delay: .5s;
+  --timing: 1s;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}*/
+/* במקום :root */
+#qs-popup {
+  font-size: 10px; /* או מה שאת רוצה עבור הפופאפ בלבד */
+  --delay: .5s;
+  --timing: 1s;
+}
+
+/* במקום * גלובלי 
+#qs-popup,
+#qs-popup * ,
+#qs-popup *::before,
+#qs-popup *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*/
+
+.box-outer {
+  overflow: hidden;
+  width: 420px;
+  height: 660px;
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+}
+.main_box {
+  width: 420px;
+  height: 660px;
+  max-height: calc(100vh - 120px);
+  max-width: 100%;
+  position: relative;
+  background: #f34c4c;
+  border: 0.5rem solid #000;
+}
+.main_box .bar {
+  position: absolute;
+  width: 5rem;
+  height: 0.5rem;
+  background: #fff;
+  transition: all var(--timing) linear;
+  -webkit-animation-duration: var(--timing);
+  animation-duration: var(--timing);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.main_box .bar.delay {
+  animation-delay: var(--delay);
+  -webkit-animation-delay: var(--delay);
+}
+.main_box  .top.bar {
+  top: -0.5rem;
+  left: -0.5rem;
+}
+.main_box .right.bar {
+  top: 1.8rem;
+  right: -2.8rem;
+  transform: rotate(90deg);
+}
+.main_box .bottom.bar {
+  bottom: -0.5rem;
+  left: -0.5rem;
+}
+.main_box .left.bar {
+  top: 1.8rem;
+  left: -2.8rem;
+  transform: rotate(90deg);
+}
+@-webkit-keyframes h-move {
+  0% {
+    left: -0.5rem;
+  }
+  100% {
+    left: 20rem;
+  }
+}
+@keyframes h-move {
+  0% {
+    left: -0.5rem;
+  }
+  100% {
+    left: 20rem;
+  }
+}
+.top,
+.bottom {
+  -webkit-animation-name: h-move;
+  animation-name: h-move;
+}
+@-webkit-keyframes v-move {
+  0% {
+    top: -0.5rem;
+  }
+  100% {
+    /*top: 22.8rem;*/
+    top: 100%;
+  }
+}
+@keyframes v-move {
+  0% {
+    top: -0.5rem;
+  }
+  100% {
+    /*top: 22.8rem;*/
+    top: 100%;
+  }
+}
+.right,
+.left {
+  -webkit-animation-name: v-move;
+  animation-name: v-move;
+}
+/* ===========================
+   Radio Click-Wave (scoped)
+   =========================== */
+
+#qs-popup .qs-radio-wave {
+  --qs-wave-size: 200px;
+  --qs-radio-size: 40px;
+  --qs-accent: var(--qs-checkbox-color, #fa9e4d);
+  --qs-idle: #cbd1d8;
+  --qs-idle-hover: #9faab7;
+  --qs-checkmark: "✓"; /* ברירת מחדל ללא FA */
+}
+
+#qs-popup .qs-radio-wave label,
+#qs-popup .qs-radio-wave .qs-radio-wave-item {
+  display: block;
+  align-items: center;
+  gap: .5rem;
+  line-height: var(--qs-radio-size);
+  cursor: pointer;
+  position: relative; /* כדי שהגל לא ייחתך */
+  margin-inline-end: 1rem;
+  overflow: visible;
+}
+
+/* איפוס ברירת מחדל */
+#qs-popup .qs-radio-wave .option-input,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  height: var(--qs-radio-size);
+  width:  var(--qs-radio-size);
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  background: var(--qs-idle);
+  color: #fff;
+  cursor: pointer;
+  transition: background .15s ease-out;
+  z-index: 0;
+}
+
+/* Hover */
+#qs-popup .qs-radio-wave .option-input:hover,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:hover {
+  background: var(--qs-idle-hover);
+}
+
+/* מצב נבחר */
+#qs-popup .qs-radio-wave .option-input:checked,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked {
+  background: var(--qs-accent);
+}
+
+/* הסימון בפנים (V) – ברירת מחדל ✓, ואם נטען FA הוא ייראה שם גם */
+#qs-popup .qs-radio-wave .option-input:checked::before,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked::before {
+  content: var(--qs-checkmark);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* גל ההתפשטות */
+#qs-popup .qs-radio-wave .option-input:checked::after,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width:  var(--qs-radio-size);
+  height: var(--qs-radio-size);
+  border-radius: 50%;
+  background: var(--qs-accent);
+  animation: qs-click-wave .65s forwards;
+  z-index: -1; /* מאחורי הכפתור */
+}
+
+@keyframes qs-click-wave {
+  0%   { width: var(--qs-radio-size); height: var(--qs-radio-size); opacity: .35; }
+  100% { width: var(--qs-wave-size);  height: var(--qs-wave-size);
+         margin-left: calc(var(--qs-wave-size) / -2 + var(--qs-radio-size)/2);
+         margin-top:  calc(var(--qs-wave-size) / -2 + var(--qs-radio-size)/2);
+         opacity: 0; }
+}
+
+/* טקסט ליד הכפתור */
+#qs-popup .qs-radio-wave .qs-radio-caption {
+/*  font: 14px/1.2 "Poppins", system-ui, Arial, sans-serif;*/
+  color: var(--qs-text-color, #111);
+}
+
+/* נגישות: outline בפוקוס מקלדת */
+#qs-popup .qs-radio-wave .option-input:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--qs-accent), transparent 70%);
+}
+
+/* RTL spacing קטן */
+html[dir="rtl"] #qs-popup .qs-radio-wave .qs-radio-wave-item {
+  margin-inline-end: 0;
+  margin-inline-start: 1rem;
+}
+/* ערימה אנכית לאפשרויות רדיו */
+#qs-popup .qs-radio-wave {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* טקסט מיושר שמאלה/ימינה לפי RTL */
+  gap: 10px;               /* רווח אנכי בין שורות */
+}
+
+/* כל אפשרות – בשורה נפרדת, בלי מרווחים אופקיים קודמים */
+#qs-popup .qs-radio-wave .qs-radio-wave-item {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;               /* מבטל margin-inline שהיה לגרסה האופקית */
+}
+
+/* ל-RTL לא צריך מרווח צד – כבר בוטל למעלה */
+html[dir="rtl"] #qs-popup .qs-radio-wave .qs-radio-wave-item { margin: 0; }
+/* מרכוז מושלם של ה"הילה" סביב הרדיו */
+#qs-popup .qs-radio-wave .option-input:checked::after,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width:  var(--qs-radio-size);
+  height: var(--qs-radio-size);
+  border-radius: 50%;
+  background: var(--qs-accent);
+  transform: translate(-50%, -50%) scale(1);
+  animation: qs-click-wave-centered .65s forwards;
+  z-index: -1; /* מאחורי הכפתור */
+}
+
+/* במקום להגדיל width/height + מרג'ינים, עוברים ל-scale עם מרכוז */
+@keyframes qs-click-wave-centered {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: .35;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(var(--qs-wave-scale, 5));
+    opacity: 0;
+  }
+}
+/* מרכוז אמיתי של ההילה + ניקוי מרג'ינים/קצוות מהכלל הישן */
+#qs-popup .qs-radio-wave .option-input:checked::after,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  right: auto;              /* ביטול inset מהכלל הישן */
+  bottom: auto;             /* ביטול inset מהכלל הישן */
+  margin: 0;                /* מבטל margin:auto מהכלל הישן */
+  width:  var(--qs-radio-size);
+  height: var(--qs-radio-size);
+  border-radius: 50%;
+  background: var(--qs-accent);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  animation: qs-click-wave-centered .65s forwards;
+  z-index: -1;              /* מאחורי הכפתור */
+  pointer-events: none;     /* לא חוסם קליקים לשכנים */
+}
+
+/* גם ה"וי" לא יחסום קליקים */
+#qs-popup .qs-radio-wave .option-input:checked::before,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"]:checked::before {
+  pointer-events: none;
+}
+
+/* ודא שהאינפוט מעל שכבת ההילה */
+#qs-popup .qs-radio-wave .option-input,
+#qs-popup .qs-radio-wave.effect_b input[type="radio"] {
+  position: relative;
+  z-index: 1;
+}
+
+/* כל פריט יוצר קונטקסט זינדקס משלו, ההילה לא "תדלוף" לשכן */
+#qs-popup .qs-radio-wave .qs-radio-wave-item {
+  position: relative;
+  isolation: isolate; /* חשוב כדי ש-z-index:-1 יישאר מתחת לפריט עצמו בלבד */
+}
+
+/* אנימציית scale ממורכזת */
+@keyframes qs-click-wave-centered {
+  0%   { transform: translate(-50%, -50%) scale(1);                 opacity: .35; }
+  100% { transform: translate(-50%, -50%) scale(var(--qs-wave-scale, 5)); opacity: 0; }
+}
+/* =============== Effect C: Gooey Switch (scoped to popup) =============== */
+#qs-popup .qs-radio-switchC {
+  --qs-switch-accent: #fa9e4d;
+  --qs-switch-idle:   gray;
+  --qs-cap-color:     var(--qs-text-color, #111);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#qs-popup .qs-switchC-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  cursor: pointer;
+  isolation: isolate;           /* מגן על שכבות פנימיות */
+}
+
+#qs-popup .qs-switchC-caption {
+ /* font: 14px/1.2 system-ui, Arial, sans-serif;*/
+  color: var(--qs-cap-color);
+}
+
+/* מסתירים את רדיו הליבה אך משאירים פוקוסיות */
+#qs-popup .qs-radio-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* מתג וגשר */
+#qs-popup .switchContainer {
+  position: relative;
+  width: 60px; height: 30px;    /* box הנראה */
+  display: inline-block;
+}
+
+#qs-popup .switchBg {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 7px;
+  border-radius: 999px;
+  background: var(--qs-switch-idle);
+  transition: background 300ms ease;
+}
+
+#qs-popup .switchBtn {
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translate3d(0,-50%,0);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--qs-switch-idle);
+  transition: background 300ms ease;
+}
+
+/* מצב "דלוק" (נבחר) – נצבע ב-accent */
+#qs-popup .qs-switchC-item[aria-checked="true"] .switchBg,
+#qs-popup .qs-switchC-item[aria-checked="true"] .switchBtn {
+  background: var(--qs-switch-accent);
+}
+
+/* אנימציות on/off (מותאם מהקוד שנתת) */
+@keyframes qsC_switchOn {
+  0%   { transform: translate3d(0,-50%,0) scale3d(1,1,1); transform-origin: left center; }
+  40%  { transform: translate3d(20px,-50%,0) scale3d(1.4,0.7,1); transform-origin: right center; }
+  70%  { transform: translate3d(33px,-50%,0) scale3d(0.9,1.15,1); }
+  100% { transform: translate3d(30px,-50%,0) scale3d(1,1,1); }
+}
+@keyframes qsC_switchOff {
+  0%   { transform: translate3d(30px,-50%,0) scale3d(1,1,1); transform-origin: right center; }
+  40%  { transform: translate3d(10px,-50%,0) scale3d(1.4,0.7,1); transform-origin: right center; }
+  70%  { transform: translate3d(-3px,-50%,0) scale3d(0.9,1.15,1); }
+  100% { transform: translate3d(0,-50%,0) scale3d(1,1,1); }
+}
+
+/* החלת האנימציות לפי data-state */
+#qs-popup .qs-switchC-item[data-state="on"] .switchBtn {
+  animation: qsC_switchOn 250ms linear forwards;
+}
+#qs-popup .qs-switchC-item[data-state="off"] .switchBtn {
+  animation: qsC_switchOff 250ms linear forwards;
+}
+
+/* פוקוס מקלדת ברור */
+#qs-popup .qs-switchC-item:focus-within .switchBg,
+#qs-popup .qs-switchC-item:focus-visible .switchBg {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--qs-switch-accent), transparent 70%);
+}
+
+/* התאמה עומדת: אפשר להקטין/להגדיל את כל המתג בעזרת scale inline (כמו בדוגמה) */
+/* שמירת חדות/עגול מושלם, גם בסוף האנימציה */
+#qs-popup .switchBtn {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  border-radius: 50%;        /* מבטיח עיגול גם כשיש scale זמני */
+}
+
+/* כברירת מחדל – בלי פילטר (יופעל רק בזמן אנימציה דרך JS) */
+#qs-popup .switchBg,
+#qs-popup .switchBtn {
+  -webkit-filter: none !important;
+          filter: none !important;
+}
+/* כבה פילטר מהכפתור – מיידי */
+#qs-popup .switchContainer .switchBtn{
+  -webkit-filter: none !important;
+          filter: none !important;
+}
+
+/* רוצה עדיין Gooey? תשאירי פילטר רק על הפס */
+#qs-popup .switchContainer .switchBg{
+  -webkit-filter: url(popup.css%3Fv=47&ver=0.2.5.css) !important; /* אם יש לך id דינמי, אפשר להשאיר בלי ה-id */
+          filter: url(popup.css%3Fv=47&ver=0.2.5.css) !important;
+}
+.qs-pages{
+    padding: 20px;
+    border-radius: 20px;	
+	text-align: right;
+}
+.qs-logo{ text-align:center; margin:8px 0 12px; }
+.qs-logo img{ max-width:150px; max-height:150px; width:auto; height:auto;  }
+
+
+
+
+/* ===== Page transition: spin + slide ===== */
+#qs-popup .qs-page { will-change: transform, opacity; }
+
+#qs-popup .qs-page.qs-anim-enter {
+  animation: qsSpinIn 520ms cubic-bezier(.2,.65,.25,1) both;
+}
+#qs-popup .qs-page.qs-anim-exit {
+  animation: qsSpinOut 520ms cubic-bezier(.2,.65,.25,1) both;
+}
+
+@keyframes qsSpinOut {
+  0%   { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateX(-60px) rotate(-10deg) scale(.96); }
+}
+@keyframes qsSpinIn {
+  0%   { opacity: 0; transform: translateX(60px) rotate(10deg) scale(.96); }
+  100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+}
+/* qs-page יהיה “מוכן לאנימציה” */
+#qs-popup .qs-page { will-change: transform, opacity; }
+
+/* דף נכנס */
+#qs-popup .qs-page.qs-anim-enter {
+  animation: qsSpinIn 520ms cubic-bezier(.2,.65,.25,1) both;
+}
+
+/* דף יוצא */
+#qs-popup .qs-page.qs-anim-exit {
+  animation: qsSpinOut 520ms cubic-bezier(.2,.65,.25,1) both;
+}
+
+/* פריימים: יוצא */
+@keyframes qsSpinOut {
+  0%   { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateX(-60px) rotate(-10deg) scale(.96); }
+}
+
+/* פריימים: נכנס */
+@keyframes qsSpinIn {
+  0%   { opacity: 0; transform: translateX(60px) rotate(10deg) scale(.96); }
+  100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+}
+/* אפקט דפדוף 3D לעמודי הטופס */
+#qs-popup .qs-pages{
+  position: relative;
+  perspective: 900px;         /* עומק */
+  -webkit-perspective: 900px;
+}
+
+/* כל עמוד נערם זה על זה, ונשלט ע"י transform */
+#qs-popup .qs-page{
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform .78s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;       /* רק הפעיל יהיה אינטראקטיבי */
+}
+
+/* העמוד הפעיל בלבד */
+#qs-popup .qs-page.qs-active{ pointer-events: auto; }
+
+/* נקודת סיבוב לימין/שמאל (RTL) */
+#qs-popup .qs-page.qs-origin-right{ transform-origin: 100% 50%; }
+#qs-popup .qs-page.qs-origin-left { transform-origin:   0% 50%; }
+/* מכולה לדפים */
+.qs-pages{
+  position: relative;
+  perspective: 800px;          /* בשביל ה-3D */
+  -webkit-perspective: 800px;
+  overflow: hidden;             /* שלא יברח החוצה בזמן סיבוב */
+  transition: height .35s ease; /* גובה חלק בין עמודים */
+}
+
+/* כל עמוד מונח זו על זו */
+.qs-page{
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;     /* לא לראות את הגב */
+  -webkit-backface-visibility: hidden;
+  transition: transform .8s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+
+/* פיבוטים לסיבוב */
+.qs-origin-right{ transform-origin: 100% 50%; }
+.qs-origin-left { transform-origin:   0% 50%; }
+
+/* אינטראקציה רק עם הפעיל */
+.qs-page{ pointer-events: none; }
+.qs-page.qs-active{ pointer-events: auto; }
+
+
+
+/* מכולת הדפים – גובה קבוע */
+.qs-pages{
+  position: relative;
+  perspective: 800px;
+  -webkit-perspective: 800px;
+  height: 370px;        /* ← קיבוע הגובה */
+  overflow: auto;       /* אם לא רוצים גלילה פנימית – החליפי ל: hidden */
+}
+
+/* העמודים עצמם נשארים מוערמים */
+.qs-page{
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform .8s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.qs-origin-right{ transform-origin: 100% 50%; }
+.qs-origin-left { transform-origin:   0% 50%; }
+.qs-page{ pointer-events: none; }
+.qs-page.qs-active{ pointer-events: auto; }
+/* ודאי שהמכולה יחסית וסגורה */
+#qs-popup .qs-pages{
+  position: relative !important;
+  height: 380px !important;    /* לפי מה שביקשת */
+  max-height: calc(100vh - 403px);
+}
+
+/* כל דף ממוקם מוחלט ונערם זה על זה */
+#qs-popup .qs-pages > .qs-page{
+  position: absolute !important;
+  inset: 0 !important;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform .78s cubic-bezier(0.175,0.885,0.32,1.275);
+  pointer-events: none;
+	border-radius: 20px;
+}
+
+/* רק הדף הפעיל אינטראקטיבי */
+#qs-popup .qs-pages > .qs-page.qs-active{
+  pointer-events: auto;
+}
+/* היה לך padding על .qs-pages – תעבירי לעמוד עצמו */
+#qs-popup .qs-pages { padding: 0 !important; background: none !important; }
+#qs-popup .qs-pages > .qs-page {
+  padding: 10px;
+  border-radius: 20px;
+  /* רק אם צריך להבטיח שהרקע יכסה: */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+ position: absolute;      /* נשאר כמו אצלך */
+  inset: 0;                /* ממלא את המכולה */
+  overflow-y: auto;        /* ← כאן הגלילה */
+  -webkit-overflow-scrolling: touch; /* גלילה חלקה במ מובייל */
+  scrollbar-gutter: stable both-edges; /* פחות קפיצות כשהפס מופיע */
+}
+/* בסיס לכפתור – לא תלוי מיקום */
+#qs-popup .qs-btn-primary {
+  margin: 15px auto;
+  font-family: var(--qs-font-family, inherit) !important;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 15px 20px;
+  border: 0;
+  display: inline-flex;        /* נוח ליישור תוכן פנימי */
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== בסיס חזק לשני הכפתורים: בתוך הפופאפ (#qs-popup) וה-FAB החיצוני (#qs-fab) ===== */
+#qs-popup .qs-btn-primary,
+#qs-fab {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0 !important;
+  border-radius: 999px !important;       /* אליפסה תמיד */
+  padding: 12px 18px !important;         /* מספיק גובה “כפתורי” */
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font: inherit;
+  text-decoration: none;
+  overflow: hidden;                       /* שלא יברח מעבר לרדיוס */
+  color: #fff !important;                 /* טקסט לבן כברירת־מחדל */
+  box-sizing: border-box;
+  cursor: pointer;
+}
+/* הטקסט הפנימי (אם קיים span) */
+#qs-popup .qs-btn-primary .qs-btn-label,
+#qs-fab .qs-btn-label { color:#fff !important; }
+
+/* ===== אפקט A (pulse-button) – נוודא רדיוס ורקע לא נדרסים ===== */
+#qs-popup .qs-btn-primary.pulse-button,
+#qs-fab.pulse-button {
+  border-radius: 999px !important;
+  animation: borderPulse 1000ms infinite ease-out, colorShift 10000ms infinite ease-in;
+}
+#qs-popup .pulse-button:hover,
+#qs-popup .pulse-button:focus,
+#qs-fab.pulse-button:hover,
+#qs-fab.pulse-button:focus {
+  animation: borderPulse 1000ms infinite ease-out,
+             colorShift 10000ms infinite ease-in,
+             hoverShine 200ms;
+}
+
+/* ===== אפקט B/C/D (qs-solid-pulse) – צבע אחיד מ-API + פולס ===== */
+#qs-fab.qs-solid-pulse {
+  --btn-color: #000000;
+  background: var(--btn-color) !important;
+  border-radius: 100px !important;
+  font-family: var(--qs-font-family, inherit);
+  font-size: 20px;
+  color: #ffffff !important;
+  cursor: pointer;
+  padding: 15px 20px;
+  border: 0px solid #000;
+  animation: borderPulse 1000ms infinite ease-out;
+}
+#qs-fab.qs-solid-pulse:hover,
+#qs-fab.qs-solid-pulse:focus {
+  animation: borderPulse 1000ms infinite ease-out, hoverShine 200ms;
+}
+
+/* ===== אפקט B (animated-button) – עם גל ברק ===== */
+#qs-popup .qs-btn-primary.animated-button,
+#qs-fab.animated-button {
+  background: linear-gradient(45deg, #fbba00, #ebb215) !important;
+  border-radius: 105px !important;
+  min-height: 44px; /* מבטיח אליפסה גם אם יש איפוס גלובלי */
+  position: relative;
+  isolation: isolate;
+}
+#qs-popup .qs-btn-primary.animated-button::before,
+#qs-fab.animated-button::before {
+  content: "";
+  position: absolute; inset: 0;
+  left: -100%;
+  background: linear-gradient(45deg, transparent, #ffffff, transparent);
+  animation: qsWave 2s infinite linear;
+  z-index: 0;
+}
+#qs-popup .qs-btn-primary.animated-button .qs-btn-label,
+#qs-fab.animated-button .qs-btn-label { position: relative; z-index: 1; }
+
+/* ===== אפקט C (button) – עם גרדיאנט פנימי ואספקט ===== */
+#qs-popup .qs-btn-primary.button,
+#qs-fab.button {
+  --speed: 1.25s;
+  container-type: size;
+  width: 150px !important;
+  aspect-ratio: 7 / 3;
+  border-radius: 999px !important;
+  background: hsl(0 0% 10%) !important;
+  box-shadow:
+    0 1px 0 0 hsl(0 0% 100% / 0.35) inset,
+    0 -1px 0 0 hsl(0 0% 0% / 0.85);
+  position: relative;
+  padding: 0 !important;
+}
+#qs-popup .qs-btn-primary.button::after,
+#qs-fab.button::after {
+  content: attr(data-after);
+  position: absolute; inset: 2px;
+  border-radius: 999px;
+  background: hsl(0 0% 10%);
+  display: grid; place-items: center;
+  color: hsl(0 0% 90%); font-weight: 700;
+  font-size: 16px; /* 4vmin לפעמים קטן מדי בדסקטופ – אפשר להחזיר אם אהבת */
+}
+#qs-popup .qs-btn-primary.button .gradient,
+#qs-fab.button .gradient {
+  position: absolute;
+  width: 100cqh; aspect-ratio: 1;
+  left: 0; top: 50%; translate: 0 -50%;
+  border-radius: 50%;
+  animation: qsCpSlide  var(--speed) ease-in-out infinite alternate;
+}
+#qs-popup .qs-btn-primary.button .gradient::after,
+#qs-fab.button .gradient::after {
+  --spread: 90deg;
+  content: "";
+  position: absolute; inset: -100%;
+  background: conic-gradient(
+    from calc(270deg - (var(--spread) * 0.5)),
+    transparent 0,
+    hsl(0 0% 100% / 0.75) var(--spread),
+    transparent var(--spread)
+  );
+  animation: rotate calc(var(--speed) * 2) infinite linear;
+}
+
+/* ===== אפקט D (testbutton) – ללא לולאת אנימציה ===== */
+#qs-popup .qs-btn-primary.testbutton,
+#qs-fab.testbutton {
+  width: 150px; height: 50px;
+  border-radius: 180px !important;
+  background: linear-gradient(60deg,
+    #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82) !important;
+  position: relative; overflow: hidden; box-sizing: border-box;
+}
+#qs-popup .qs-btn-primary.testbutton::before,
+#qs-fab.testbutton::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  border-radius: inherit; background: inherit;
+  filter: blur(18px); opacity: 0; transition: opacity .25s ease;
+}
+#qs-popup .qs-btn-primary.testbutton:hover::before,
+#qs-fab.testbutton:hover::before { opacity: .9; }
+#qs-popup .qs-btn-primary.testbutton::after,
+#qs-fab.testbutton::after {
+  content: attr(data-after);
+  position: absolute; inset: 6px; z-index: 1;
+  border-radius: inherit; display: grid; place-items: center;
+  background: #131416; color: #ebebeb;
+  font-weight: 700; font-size: 18px;
+}
+
+/* ===== Keyframes ===== */
+@keyframes colorShift {
+  0%, 100% { background: #0045e6; }
+  33%      { background: #fb3e3e; }
+  66%      { background: #0dcc00; }
+}
+@keyframes borderPulse {
+  0%   { box-shadow: inset 0 0 0 5px rgba(255,255,255,.4), 0 0 0 0 rgba(255,255,255,1); }
+  100% { box-shadow: inset 0 0 0 3px rgba(117,117,255,.2), 0 0 0 10px rgba(255,255,255,0); }
+}
+@keyframes hoverShine {
+  0%   { background-image: linear-gradient(135deg, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%); }
+  50%  { background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 50%, rgba(255,255,255,0) 100%); }
+  100% { background-image: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,.4) 100%); }
+}
+@keyframes qsWave { 0% { left:-100%; } 100% { left:100%; } }
+@keyframes rotate { 0% { rotate:0deg; } 15%,35% { rotate:90deg; } 65%,85% { rotate:270deg; } 100% { rotate:360deg; } }
+@keyframes qsCpSlide { to { transform: translate(calc(100cqw - 100%), 0); } }
+/* ברירת מחדל: הכפתור מוצג */
+#qs-fab { display: inline-flex; }
+
+/* כשהפופאפ פתוח (data-open="1") – הסתר את ה-FAB */
+#qs-popup[data-open="1"] ~ #qs-fab { 
+  display: none !important;
+}
+#qs-fab{
+  position: fixed;
+  left: 20px;         /* ← שמאל קבוע */
+  right: auto;        /* ← בטחון שלא “יירש” right ממקום אחר */
+  bottom: 20px;
+  z-index: 100000;
+}
+/* הגדלת פונט בכפתור ה-FAB */
+#qs-fab {
+  font-size: 22px !important;   /* טקסט כללי בכפתור */
+  padding: 14px 22px !important; /* קצת יותר מרווח – אופציונלי */
+}
+
+/* אם קיים span פנימי לטקסט */
+#qs-fab .qs-btn-label {
+  font-size: inherit !important;
+}
+
+/* מקרה אפקט C (class "button") – הטקסט מוצג ב-::after */
+#qs-fab.button::after {
+  font-size: 20px !important;
+}
+/* מקבע את כפתור ה-FAB לצד שמאל בלבד ולא לרוחב מלא */
+#qs-fab{
+  position: fixed !important;
+  left: 20px !important;              /* שמאל */
+  right: auto !important;             /* מבטל מתיחה */
+
+  bottom: 20px !important;
+  width: auto !important;             /* לא 100% */
+  max-width: none !important;
+}
+
+/* הגדלת פונט בכפתור */
+#qs-fab,
+#qs-fab .qs-btn-label{
+  font-size: 22px !important;
+}
+
+/* אם האפקט הוא C (class "button") – הטקסט מוצג ב-::after */
+#qs-fab.button::after{
+  font-size: 22px !important;
+}
+.qs-logo {
+  width: 100%;         /* להתאים לגודל הרצוי */
+  height: 120px;
+  margin: 0 auto 20px;  /* מרכז + רווח מתחת */
+  background-size: 100%, auto;   /* או cover אם את רוצה למלא */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* שדות שקופים בפופאפ */
+#qs-popup .qs-input,
+#qs-popup .qs-field input[type="text"],
+#qs-popup .qs-field input[type="email"],
+#qs-popup .qs-field input[type="tel"],
+#qs-popup .qs-field input[type="date"],
+#qs-popup .qs-field select,
+#qs-popup .qs-field textarea {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  background-clip: padding-box; /* תיקון קטן ל-iOS */
+}
+
+/* אם את משתמשת במסגרת החיצונית – גם היא בלי רקע */
+#qs-popup .qs-field.qs-framed {
+  background: transparent !important;
+}
+
+/* שמירה על קריאות (גבול עדין – אפשר להתאים לצבע רקע כהה/בהיר) */
+#qs-popup .qs-input,
+#qs-popup .qs-field input,
+#qs-popup .qs-field select,
+#qs-popup .qs-field textarea {
+  border-color: #d9d9d9;
+  color: var(--qs-text-color, #111) !important;
+  font-family: var(--qs-font-family, inherit) !important;
+}
+
+/* כותרת שדה וכיתוב רדיו — גופן מותאם */
+#qs-popup .qs-field-title,
+#qs-popup .qs-radio-caption,
+#qs-popup .qs-radio-item label,
+#qs-popup .qs-switchC-caption {
+  font-family: var(--qs-font-family, inherit) !important;
+}
+
+/* מנקה רקע אוטופיל הצהוב של כרום */
+#qs-popup input:-webkit-autofill,
+#qs-popup input:-webkit-autofill:hover,
+#qs-popup input:-webkit-autofill:focus,
+#qs-popup textarea:-webkit-autofill,
+#qs-popup select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--qs-text-color, #111) !important;
+  transition: background-color 9999s ease-out 0s; /* מסתיר הבהוב */
+}
+
+#qs-popup .qs-header h2, #qs-popup .qs-page-title, #qs-popup .qs-field label {
+     display: flex
+; 
+}
+/* 0) נועל רק כשאת פותחת את הפופאפ (בטוח, כי זה על מחלקה יזומה) */
+html.qs-noscroll, html.qs-noscroll body {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+/* ===== כל מה שמכאן – ממוסגר לפופאפ בלבד ===== */
+
+/* 1) שורש הפופאפ */
+#qs-popup {
+  /* אם יש נזילות לרוחב - נחתוך אותן כאן */
+  overflow-x: hidden !important;
+  max-width: 100%;
+  /* אופציונלי לבידוד טוב יותר: */
+  /* contain: layout paint size; */
+}
+
+/* 2) תקן box-sizing רק בתכולת הפופאפ */
+#qs-popup, 
+#qs-popup * , 
+#qs-popup *::before, 
+#qs-popup *::after {
+  box-sizing: border-box;
+}
+
+/* 3) האוברליי/מודאל/אזור הדפים – הכל בתוך הפופאפ */
+#qs-popup .qs-modal,
+#qs-popup .qs-pages,
+#qs-popup .qs-page {
+  overflow-x: hidden !important;  /* אין גלילה לרוחב בתוך הפופאפ */
+  max-width: 100%;
+}
+
+/* 4) העוטף של הדפים – חשוב בגלל האנימציות (flip/rotate) */
+#qs-popup .qs-pages {
+  position: relative;
+  overflow: hidden;               /* חותך אלמנטים ש"נוזלים" באנימציה */
+  /* ואם צריך גם גובה גלול אנכי מבוקר: */
+  /* max-height: calc(100dvh - 120px); overflow-y: auto; */
+}
+
+/* 5) מדיה בתוך הפופאפ לא שוברת רוחב */
+#qs-popup :is(img, video, svg, canvas) {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 6) טבלאות/טקסט רחב – רק בתוך הפופאפ */
+#qs-popup table { 
+  max-width: 100%; 
+  display: block; 
+  overflow-x: auto;               /* אם טבלה רחבה – יתן גלילה פנימית */
+}
+
+#qs-popup pre, 
+#qs-popup code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 7) מניעת שורות-אינסופיות בתוך הפופאפ */
+#qs-popup .qs-page, 
+#qs-popup .qs-body, 
+#qs-popup .qs-field {
+  overflow-wrap: anywhere; /* או: word-break: break-word; */
+}
+/* מרכז את הלינק ושומר על מראה נקי */
+.qs-modal .qs-field-link{ 
+  text-align:center;
+}
+
+/* עוגן עצמו – דריסה של reset/Elementor */
+.qs-modal .qs-field-link .qs-link{
+  display:inline-block;
+  text-decoration:none !important;           /* דריסת underline גלובלי */
+  color: var(--qs-text-color, #fa9e4d) !important; /* HEX ברירת מחדל */
+  font-weight:600;
+  padding:0px 12px;
+  border-radius:10px;
+  background: transparent;
+  outline: none;
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    cursor: pointer;
+}
+
+/* מצב ריחוף/פוקוס – קו תחתון עדין */
+.qs-modal .qs-field-link .qs-link:hover,
+.qs-modal .qs-field-link .qs-link:focus{
+  text-decoration:underline !important;
+  text-underline-offset:3px;
+	transform: translateY(-2px);
+box-shadow: 0 16px 30px rgba(0,0,0,0.26);
+filter: brightness(1.05);
+}
+
+/* אפשרות: צבע ביקור לא משתנה */
+.qs-modal .qs-field-link .qs-link:visited{
+  color: var(--qs-text-color, #fa9e4d) !important;
+}
+
+
+
+
+/* אפקט A – צמצום הקופסה של ה-SVG ולביטול רווחי baseline */
+.qs-radio-effect-a .qs-radio-item {
+  display: inline-flex;
+  align-items: center;       /* ממרכז אנכית ביחס לטקסט */
+  gap: .5rem;
+}
+
+.qs-radio-effect-a .qs-radio-item svg{
+  width: 28px;               /* קוטר ויזואלי נוח */
+  height: 28px;
+  display: block;            /* מבטל רווחי baseline */
+  flex: 0 0 auto;
+}
+
+.qs-radio-effect-a .qs-radio-caption{
+  line-height: 1.5 !important;            /* שלא ימשוך למעלה/למטה */
+}
+
+
+/* אל תסתירי שום ילד בגלל :checked בתוך הפופאפ */
+#qs-popup .qs-radio-item input[type=radio]:checked + *,
+#qs-popup .qs-radio-wave-item input[type=radio]:checked + *,
+#qs-popup .qs-switchC-item input[type=radio]:checked + * {
+  display: initial !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* אם יש בתבנית שימוש ב-:has(...) שמסתיר את כל ה-label */
+#qs-popup .qs-radio-item:has(input[type=radio]:checked),
+#qs-popup .qs-radio-wave-item:has(input[type=radio]:checked),
+#qs-popup .qs-switchC-item:has(input[type=radio]:checked) {
+  display: inline-flex !important;
+}
+
+/* ודא שה”פלייסהולדר” של אפקט A לא יוסתר */
+#qs-popup .qs-radio-effect-a .qs-radio-item > div,
+#qs-popup .qs-radio-a-placeholder {
+  display: block !important;
+}
+
+/* ביטחון כללי: לא לאפשר להורה לקרוס */
+#qs-popup .qs-field,
+#qs-popup .qs-radio-effect-a,
+#qs-popup .qs-radio-wave,
+#qs-popup .qs-switchC-item {
+  display: block; /* או inline-flex לפריטים עצמם */
+}
+
+
+/* כפתור X בתוך המודל – דורס reset.css */
+.qs-modal .qs-close {
+    all: unset; /* מנקה הכל מה־reset */
+    position: absolute;
+    top: 10px;
+	right:10px;
+    inset-inline-end: 10px; /* ימין ב־RTL */
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12) !important;
+
+    cursor: pointer;
+    color: #333;
+    z-index: 9999;
+    padding: 0 !important;
+}
+
+/* האייקון עצמו (האיקס) */
+.qs-modal .qs-close span {
+    position: relative;
+    display: block;
+    width: 60%;
+    height: 60%;
+}
+
+.qs-modal .qs-close span::before,
+.qs-modal .qs-close span::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 100%;
+    height: 2px;
+    margin: -1px 0 0 -50%;
+    background: currentColor;
+    border-radius: 999px;
+}
+
+.qs-modal .qs-close span::before { transform: rotate(45deg); }
+.qs-modal .qs-close span::after  { transform: rotate(-45deg); }
+
+.qs-modal .qs-close:hover {
+    transform: scale(1.05);
+}
+/* צבע קבוע ל-X גם בהובר/פוקוס, כדי שלא יהפוך ללבן */
+.qs-modal .qs-close,
+.qs-modal .qs-close:hover,
+.qs-modal .qs-close:focus,
+.qs-modal .qs-close:focus-visible {
+    color: #333 !important;  /* או כל צבע כהה אחר שתרצי */
+}
+/* === Overlay של פופאפ האישור === */
+#qs-confirm-exit {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.40);
+  z-index: 99999;
+}
+
+#qs-confirm-exit[aria-hidden="true"] {
+  display: none;
+}
+
+/* === הקופסה עצמה === */
+#qs-confirm-exit .qs-confirm-box {
+  max-width: 900px;
+  width: 90%;
+  padding: 60px 80px 50px;
+  background: #ffe9dc;
+  border-radius: 80px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.10);
+  text-align: center;
+  border: 2px solid #ff9552;
+  box-sizing: border-box;
+}
+
+/* כותרת וטקסט – לפי הדוגמה שלך */
+#qs-confirm-exit .qs-confirm-box p {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.7;
+  color: #ff9552;
+}
+
+/* === כפתורים === */
+#qs-confirm-exit .qs-confirm-actions {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* בסיס לכל הכפתורים – עם !important כדי לדרוס reset.css */
+#qs-confirm-exit .qs-confirm-actions button {
+  min-width: 260px;
+  padding: 18px 50px;
+  border-radius: 999px;
+  font-size: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 2px solid #ff9552 !important;
+  background: transparent !important;
+  color: #ff9552 !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+/* כפתור כתום – "בואו נכיר" */
+#qs-confirm-exit .qs-confirm-actions .qs-stay {
+  background: #ff9552 !important;
+  color: #ffffff !important;
+}
+
+/* כפתור outlined – "המשך גלישה באתר" */
+#qs-confirm-exit .qs-confirm-actions .qs-exit {
+  background: transparent !important;
+  color: #ff9552 !important;
+}
+
+/* hover קטן */
+#qs-confirm-exit .qs-confirm-actions .qs-stay:hover {
+  box-shadow: 0 12px 26px rgba(0,0,0,.16);
+}
+
+#qs-confirm-exit .qs-confirm-actions .qs-exit:hover {
+  background: rgba(255,149,82,0.06) !important;
+}
+/* --- רספונסיביות --- */
+@media (max-width: 780px) {
+
+  #qs-confirm-exit .qs-confirm-box {
+    padding: 40px 30px 35px;
+    border-radius: 40px;
+    max-width: 95%;
+  }
+
+  #qs-confirm-exit .qs-confirm-box p {
+    font-size: 22px;
+    line-height: 1.6;
+  }
+
+  #qs-confirm-exit .qs-confirm-actions {
+    flex-direction: column-reverse; /* בואו נכיר למעלה, המשך גלישה למטה – כמו בדיזיין */
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  #qs-confirm-exit .qs-confirm-actions button {
+    width: 100%;
+    min-width: unset;   /* ביטול המינימום */
+    padding: 16px 0;
+    font-size: 18px;
+    border-radius: 999px;
+  }
+}
+
+/* מסכים ממש קטנים (טלפונים קטנים) */
+@media (max-width: 480px) {
+
+  #qs-confirm-exit .qs-confirm-box {
+    padding: 32px 22px 28px;
+    border-radius: 28px;
+  }
+
+  #qs-confirm-exit .qs-confirm-box p {
+    font-size: 19px;
+    line-height: 1.55;
+  }
+
+  #qs-confirm-exit .qs-confirm-actions button {
+    padding: 14px 0;
+    font-size: 17px;
+  }
+}
+.qs-scroll{
+
+  transform:scale(0.5);
+	position: sticky;
+    left: 7px;
+    bottom: 10px;
+}
+
+.qs-scroll__mouse{
+  background:var(--qs-pager-color,#4e5559) linear-gradient(transparent 0%,transparent 50%,#ffffff 50%,#ffffff 100%);
+  position:relative;
+  width:52px;
+  height:88px;
+  border-radius:100px;
+  background-size:100% 200%;
+  -webkit-animation:qsColorSlide 5s linear infinite, qsNudgeMouse 5s ease-out infinite;
+          animation:qsColorSlide 5s linear infinite, qsNudgeMouse 5s ease-out infinite;
+}
+.qs-scroll__mouse:before,
+.qs-scroll__mouse:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+}
+.qs-scroll__mouse:before{
+  width:46px;
+  height:82px;
+  background-color:#222a30;
+  border-radius:100px;
+}
+.qs-scroll__mouse:after{
+  background-color:#ffffff;
+  width:10px;
+  height:10px;
+  border-radius:100%;
+  -webkit-animation:qsTrackBallSlide 5s linear infinite;
+          animation:qsTrackBallSlide 5s linear infinite;
+}
+
+/* keyframes (namespaced) */
+@-webkit-keyframes qsColorSlide{
+  0%{background-position:0% 100%}
+  20%{background-position:0% 0%}
+  21%{background-color:var(--qs-pager-color,#4e5559)}
+  29.99%{background-color:#ffffff;background-position:0% 0%}
+  30%{background-color:var(--qs-pager-color,#4e5559);background-position:0% 100%}
+  50%{background-position:0% 0%}
+  51%{background-color:var(--qs-pager-color,#4e5559)}
+  59%{background-color:#ffffff;background-position:0% 0%}
+  60%{background-color:var(--qs-pager-color,#4e5559);background-position:0% 100%}
+  80%{background-position:0% 0%}
+  81%{background-color:var(--qs-pager-color,#4e5559)}
+  90%,100%{background-color:#ffffff}
+}
+@keyframes qsColorSlide{
+  0%{background-position:0% 100%}
+  20%{background-position:0% 0%}
+  21%{background-color:var(--qs-pager-color,#4e5559)}
+  29.99%{background-color:#ffffff;background-position:0% 0%}
+  30%{background-color:var(--qs-pager-color,#4e5559);background-position:0% 100%}
+  50%{background-position:0% 0%}
+  51%{background-color:var(--qs-pager-color,#4e5559)}
+  59%{background-color:#ffffff;background-position:0% 0%}
+  60%{background-color:var(--qs-pager-color,#4e5559);background-position:0% 100%}
+  80%{background-position:0% 0%}
+  81%{background-color:var(--qs-pager-color,#4e5559)}
+  90%,100%{background-color:#ffffff}
+}
+
+@-webkit-keyframes qsTrackBallSlide{
+  0%{opacity:1;transform:scale(1) translateY(-20px)}
+  6%{opacity:1;transform:scale(.9) translateY(5px)}
+  14%{opacity:0;transform:scale(.4) translateY(40px)}
+  15%,19%{opacity:0;transform:scale(.4) translateY(-20px)}
+  28%,29.99%{opacity:1;transform:scale(1) translateY(-20px)}
+  30%{opacity:1;transform:scale(1) translateY(-20px)}
+  36%{opacity:1;transform:scale(.9) translateY(5px)}
+  44%{opacity:0;transform:scale(.4) translateY(40px)}
+  45%,49%{opacity:0;transform:scale(.4) translateY(-20px)}
+  58%,59.99%{opacity:1;transform:scale(1) translateY(-20px)}
+  60%{opacity:1;transform:scale(1) translateY(-20px)}
+  66%{opacity:1;transform:scale(.9) translateY(5px)}
+  74%{opacity:0;transform:scale(.4) translateY(40px)}
+  75%,79%{opacity:0;transform:scale(.4) translateY(-20px)}
+  88%,100%{opacity:1;transform:scale(1) translateY(-20px)}
+}
+@keyframes qsTrackBallSlide{
+  0%{opacity:1;transform:scale(1) translateY(-20px)}
+  6%{opacity:1;transform:scale(.9) translateY(5px)}
+  14%{opacity:0;transform:scale(.4) translateY(40px)}
+  15%,19%{opacity:0;transform:scale(.4) translateY(-20px)}
+  28%,29.99%{opacity:1;transform:scale(1) translateY(-20px)}
+  30%{opacity:1;transform:scale(1) translateY(-20px)}
+  36%{opacity:1;transform:scale(.9) translateY(5px)}
+  44%{opacity:0;transform:scale(.4) translateY(40px)}
+  45%,49%{opacity:0;transform:scale(.4) translateY(-20px)}
+  58%,59.99%{opacity:1;transform:scale(1) translateY(-20px)}
+  60%{opacity:1;transform:scale(1) translateY(-20px)}
+  66%{opacity:1;transform:scale(.9) translateY(5px)}
+  74%{opacity:0;transform:scale(.4) translateY(40px)}
+  75%,79%{opacity:0;transform:scale(.4) translateY(-20px)}
+  88%,100%{opacity:1;transform:scale(1) translateY(-20px)}
+}
+
+@-webkit-keyframes qsNudgeMouse{
+  0%{transform:translateY(0)}
+  20%{transform:translateY(8px)}
+  30%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+  60%{transform:translateY(0)}
+  80%{transform:translateY(8px)}
+  90%{transform:translateY(0)}
+}
+@keyframes qsNudgeMouse{
+  0%{transform:translateY(0)}
+  20%{transform:translateY(8px)}
+  30%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+  60%{transform:translateY(0)}
+  80%{transform:translateY(8px)}
+  90%{transform:translateY(0)}
+}
+.qs-scroll {
+  opacity: 0;
+  transition: opacity .3s;
+	width: 450px;
+    direction: ltr;
+	z-index:-2;
+}
+
+.qs-scrollbox.qs-has-overflow .qs-scroll {
+  opacity: 1;
+}
+.qs-page::-webkit-scrollbar { display:none; }
+.qs-page { scrollbar-width:none; -ms-overflow-style:none; }
+#qs-popup .qs-header h2#qs-title{
+  color: var(--qs-title-color, var(--qs-text-color, #111)) !important;
+  letter-spacing: initial;
+}
+
+/* ===== Cookie Consent Popup ===== */
+#qs-cookie-overlay {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999999999;
+  transform: scale(0.667);
+  transform-origin: bottom right;
+}
+#qs-cookie-overlay.bc-pos-right {
+  right: 20px;
+  transform-origin: bottom right;
+}
+#qs-cookie-overlay.bc-pos-left {
+  left: 20px;
+  transform-origin: bottom left;
+}
+
+#qs-cookie-overlay .bc-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  padding: 28px 24px 24px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,.13);
+  text-align: right;
+  direction: rtl;
+  border: 1px solid var(--mitz_coockie_color);
+}
+
+#qs-cookie-overlay .bc-modal__close {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  line-height: 1;
+  padding: 0;
+}
+
+#qs-cookie-overlay .bc-modal__icon {
+  width: 100px;
+  margin: 8px 10px 0;
+}
+
+#qs-cookie-overlay .bc-modal__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #222;
+  margin-bottom: 24px;
+}
+
+#qs-cookie-overlay .bc-modal__text a {
+  color: var(--mitz_coockie_color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#qs-cookie-overlay .bc-modal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+#qs-cookie-overlay .bc-modal__btn--primary {
+  background-color: var(--mitz_coockie_color) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  width: 110px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+#qs-cookie-overlay .bc-modal__dot {
+  color: #333;
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+/* כפתור inline — מוסתר בדסקטופ, מוצג רק במובייל */
+#qs-cookie-overlay .bc-modal__btn--inline {
+  display: none;
+}
+
+/* ============================================================
+   מדיה מובייל – עד 480px
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* ── 1. כפתור FAB ── */
+  #qs-fab {
+    font-size: 14px !important;
+    padding: 8px 14px !important;
+    bottom: 14px !important;
+    left: 12px !important;
+  }
+  #qs-fab .qs-btn-label {
+    font-size: 14px !important;
+  }
+  #qs-fab.button::after,
+  #qs-fab.qs-solid-pulse::after {
+    font-size: 14px !important;
+  }
+
+  /* ── 2. פופאפ שאלון – שוליים חיצוניים ── */
+
+  /* כל סוגי האפקטים + ללא אפקט — רוחב מובייל */
+  #qs-popup > div[class=""],
+  #qs-popup .box,
+  #qs-popup .magic_card,
+  .box-outer,
+  .main_box,
+  #qs-popup .qs-modal {
+    width: calc(100vw - 50px) !important;
+    max-width: calc(100vw - 50px) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ה-div ללא class שהוא ילד ישיר של #qs-popup */
+  #qs-popup > div[class=""] {
+    position: relative !important;
+  }
+
+  #qs-popup .qs-pages > .qs-page {
+    padding: 0 !important;
+  }
+
+  /* qs-pages מכיל דפים ב-position:absolute — חייב גובה קבוע, לא לשנות */
+
+  /* ── 3. פופאפ עוגיות – פס אופקי צמוד לתחתית ── */
+
+  /* עוגיות – ביטול scale + מיקום מעל כפתור ה-FAB, מיושר לאותו ציר X */
+  #qs-cookie-overlay {
+    transform: none !important;
+    transform-origin: unset !important;
+    bottom: 66px !important;
+  }
+  /* מיישרים לצד שמאל בדיוק עם הכפתור (left: 20px) */
+  #qs-cookie-overlay.bc-pos-left,
+  #qs-cookie-overlay.bc-pos-right {
+    left:  20px !important;
+    right: auto !important;
+  }
+
+  /* הכרטיס – גריד 2 עמודות: טקסט (ימין) | אייקון (שמאל) */
+  #qs-cookie-overlay .bc-modal {
+    width: auto !important;
+    max-width: calc(55vw) !important;
+    min-width: 0 !important;
+    border-radius: 14px !important;
+    padding: 8px 11px 4px 22px !important; /* ריווח לכפתור סגירה בשמאל */
+    display: grid !important;
+    grid-template-columns: 1fr 38px !important; /* RTL: עמודה 1=ימין (טקסט), עמודה 2=שמאל (אייקון) */
+    grid-template-rows: auto auto !important;
+    column-gap: 0px !important;
+    row-gap: 4px !important;
+    align-items: start !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15) !important;
+  }
+
+  /* אייקון – עמודה שמאל, פורש 2 שורות */
+  #qs-cookie-overlay .bc-modal__icon {
+    grid-column: 2 !important; /* שמאל ב-RTL */
+    grid-row: 1 / 3 !important;
+    width: 38px !important;
+    max-width: 38px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-self: start !important;
+    overflow: hidden !important;
+  }
+  #qs-cookie-overlay .bc-modal__icon img,
+  #qs-cookie-overlay .bc-modal__icon svg {
+    width: 38px !important;
+    max-width: 38px !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* טקסט – עמודה ימין, שורה 1 */
+  #qs-cookie-overlay .bc-modal__text {
+    grid-column: 1 !important; /* ימין ב-RTL */
+    grid-row: 1 !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0 !important;
+    min-width: 0 !important;
+  }
+
+  /* כפתור נפרד – מוסתר במובייל (הכפתור עבר לתוך הטקסט) */
+  #qs-cookie-overlay .bc-modal__actions {
+    display: none !important;
+  }
+
+  /* כפתור inline בתוך הטקסט */
+  #qs-cookie-overlay .bc-modal__btn--inline {
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    margin-right: 4px !important;
+    font-size: 10px !important;
+    padding: 3px 7px !important;
+    width: auto !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
+    background-color: var(--mitz_coockie_color) !important;
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  /* נקודה – מוסתרת */
+  #qs-cookie-overlay .bc-modal__dot {
+    display: none !important;
+  }
+
+  /* כפתור סגירה */
+  #qs-cookie-overlay .bc-modal__close {
+    top: 6px !important;
+    left: 6px !important;
+    font-size: 12px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  #sent-svg {
+    margin-top: -91px !important;
+  }
+}

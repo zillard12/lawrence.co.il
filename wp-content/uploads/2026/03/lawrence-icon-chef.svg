@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" fill="none">
+  <!-- Soft Rose Circle -->
+  <circle cx="230" cy="225" r="162" fill="#F3E3DF"/>
+  <!-- Fine Dining Cloche / Chef Dome (offset bottom-right) -->
+  <g stroke="#5A1D2B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 5)">
+    <!-- Top handle ring -->
+    <circle cx="310" cy="188" r="18"/>
+    <!-- Dome cloche -->
+    <path d="M182 328 C182 248, 236 206, 310 206 C384 206, 438 248, 438 328 Z" fill="#FFFFFF" fill-opacity="0.65"/>
+    <!-- Subtle inner dome highlight arc -->
+    <path d="M222 292 C230 254, 262 234, 298 230" stroke-width="7"/>
+    <!-- Platter base -->
+    <path d="M154 328 H466"/>
+    <path d="M174 328 C184 358, 224 374, 310 374 C396 374, 436 358, 446 328"/>
+    <!-- Delicate botanical sprig on platter right -->
+    <path d="M380 370 C405 355, 432 360, 448 378"/>
+    <path d="M412 362 C414 342, 432 336, 442 350 C432 360, 418 364, 412 362 Z" fill="#F3E3DF"/>
+    <path d="M382 368 C375 350, 390 340, 402 352 C396 364, 386 368, 382 368 Z" fill="#F3E3DF"/>
+    <!-- Sparkle stars above dome -->
+    <path d="M245 148 V168 M235 158 H255" stroke-width="6"/>
+    <path d="M368 156 V172 M360 164 H376" stroke-width="6"/>
+    <circle cx="210" cy="185" r="3.5" fill="#5A1D2B" stroke="none"/>
+    <circle cx="398" cy="192" r="3.5" fill="#5A1D2B" stroke="none"/>
+  </g>
+</svg>

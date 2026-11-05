@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" fill="none">
+  <!-- Soft Rose Circle -->
+  <circle cx="230" cy="225" r="162" fill="#F3E3DF"/>
+  <!-- Clinking Champagne Flutes & Boutique Celebration (offset bottom-right) -->
+  <g stroke="#5A1D2B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Flute (tilted right) -->
+    <g transform="translate(252, 295) rotate(12)">
+      <path d="M-36 -95 L-26 5 C-24 28, 24 28, 26 5 L36 -95 Z" fill="#FFFFFF" fill-opacity="0.65"/>
+      <path d="M-31 -48 Q0 -38 31 -48" stroke-width="7"/>
+      <line x1="0" y1="23" x2="0" y2="92"/>
+      <line x1="-32" y1="92" x2="32" y2="92"/>
+    </g>
+    <!-- Right Flute (tilted left) -->
+    <g transform="translate(348, 285) rotate(-14)">
+      <path d="M-36 -95 L-26 5 C-24 28, 24 28, 26 5 L36 -95 Z" fill="#FFFFFF" fill-opacity="0.65"/>
+      <path d="M-31 -42 Q0 -52 31 -42" stroke-width="7"/>
+      <line x1="0" y1="23" x2="0" y2="92"/>
+      <line x1="-32" y1="92" x2="32" y2="92"/>
+    </g>
+    <!-- Delicate heart / celebration rays at top center -->
+    <path d="M298 152 C298 141, 283 135, 276 144 C269 135, 254 141, 254 152 C254 166, 276 178, 276 178 C276 178, 298 166, 298 152 Z" stroke-width="7" fill="#F3E3DF"/>
+    <line x1="298" y1="112" x2="294" y2="126" stroke-width="7"/>
+    <line x1="328" y1="122" x2="318" y2="134" stroke-width="7"/>
+    <line x1="265" y1="118" x2="272" y2="130" stroke-width="7"/>
+    <!-- Bubbles & sparkles -->
+    <circle cx="196" cy="240" r="4" fill="#5A1D2B" stroke="none"/>
+    <circle cx="206" cy="222" r="3" fill="#5A1D2B" stroke="none"/>
+    <circle cx="404" cy="315" r="4" fill="#5A1D2B" stroke="none"/>
+    <circle cx="416" cy="298" r="3" fill="#5A1D2B" stroke="none"/>
+  </g>
+</svg>

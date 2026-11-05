@@ -1,0 +1,124 @@
+.elementor-kit-17{--e-global-color-primary:#2E0F17;--e-global-color-secondary:#DFC4BD;--e-global-color-text:#FFFFFF;--e-global-color-accent:#3F4932;--e-global-color-5df8091b:#2E0F17;--e-global-color-e3516cb:#3F4932;--e-global-color-cream:#F6F3EE;--e-global-color-sand:#E8DFD4;--e-global-color-wine:#5A1D2B;--e-global-color-rose:#DFC4BD;--e-global-color-olive:#3F4932;--e-global-color-198b31a:#000;--e-global-color-1976fb4e:#FFF;--e-global-typography-primary-font-family:"Google Sans", "Heebo", sans-serif;--e-global-typography-primary-font-size:3vw;--e-global-typography-primary-font-weight:normal;--e-global-typography-secondary-font-family:"Google Sans", "Heebo", sans-serif;--e-global-typography-secondary-font-size:2.2vw;--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Google Sans", "Heebo", sans-serif;--e-global-typography-text-font-size:1.5vw;--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Google Sans", "Heebo", sans-serif;--e-global-typography-accent-font-size:1.8vw;--e-global-typography-accent-font-weight:500;}.elementor-kit-17 e-page-transition{background-color:#FFBC7D;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;--widgets-spacing-row:20px;--widgets-spacing-column:20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-kit-17{--e-global-typography-primary-font-size:40px;--e-global-typography-primary-line-height:1.2em;--e-global-typography-secondary-font-size:30px;--e-global-typography-text-font-size:20px;--e-global-typography-accent-font-size:25px;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-kit-17{--e-global-typography-primary-font-size:35px;--e-global-typography-secondary-font-size:30px;--e-global-typography-secondary-line-height:1.2em;--e-global-typography-text-font-size:18px;--e-global-typography-text-line-height:1.2em;--e-global-typography-accent-font-size:20px;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}/* Start Custom Fonts CSS */@font-face {
+	font-family: "Google Sans", "Heebo", sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	font-display: auto;
+	src: url('../../2026/03/TalentFS-Light.woff2.html') format('woff2'),
+		url('../../2026/03/TalentFS-Light-1.woff') format('woff');
+}
+@font-face {
+	font-family: "Google Sans", "Heebo", sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	font-display: auto;
+	src: url('../../2026/03/TalentFS-Demibold.woff2.html') format('woff2'),
+		url('../../2026/03/TalentFS-Demibold.woff') format('woff');
+}
+/* End Custom Fonts CSS */
+
+/* ============================================================
+   UNIVERSAL TYPOGRAPHY: "Google Sans", "Heebo", sans-serif
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --e-global-typography-primary-font-family: "Google Sans", "Heebo", sans-serif !important;
+    --e-global-typography-secondary-font-family: "Google Sans", "Heebo", sans-serif !important;
+    --e-global-typography-text-font-family: "Google Sans", "Heebo", sans-serif !important;
+    --e-global-typography-accent-font-family: "Google Sans", "Heebo", sans-serif !important;
+    --ast-global-font-family: "Google Sans", "Heebo", sans-serif !important;
+}
+
+html, body,
+*, *::before, *::after,
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, ul, ol, div, button, input, select, textarea,
+.elementor,
+.elementor *,
+.elementor-heading-title,
+.elementor-widget-heading *,
+.elementor-button,
+.elementor-button *,
+.elementor-nav-menu *,
+.ast-site-identity *,
+.site-title,
+.entry-title,
+.entry-content,
+.elementor-widget-text-editor *,
+.elementor-widget-icon-box *,
+.elementor-widget-image-box *,
+.elementor-widget-n-accordion *,
+.e-n-accordion *,
+.elementor-field-group *,
+.ti-reviews-container-wrapper * {
+    font-family: "Google Sans", "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Headings Hierarchy */
+h1, .elementor-heading-title.elementor-size-xl, .elementor-heading-title.elementor-size-xxl {
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+}
+
+h2, .elementor-heading-title.elementor-size-default, .elementor-heading-title.elementor-size-large {
+    font-weight: 700 !important;
+    letter-spacing: -0.3px !important;
+}
+
+h3, h4, .elementor-image-box-title {
+    font-weight: 600 !important;
+}
+
+/* Top 3 Circle Highlights */
+.elementor-9 .elementor-element.elementor-element-2301020 .elementor-image-box-title,
+.elementor-9 .elementor-element.elementor-element-6bd22d0 .elementor-image-box-title,
+.elementor-9 .elementor-element.elementor-element-07b1d29 .elementor-image-box-title {
+    font-size: clamp(17px, 1.4vw, 21px) !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+}
+
+/* Body / Paragraphs */
+p, .elementor-widget-text-editor p {
+    font-size: 16px !important;
+    line-height: 1.75 !important;
+    font-weight: 400 !important;
+}
+
+/* Accordion FAQs */
+.e-n-accordion-item-title-text {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+}
+
+/* Trustindex Reviews */
+.ti-review-text-container.ti-review-content {
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    color: #202124 !important;
+}
+.ti-name {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #202124 !important;
+}
+.ti-date {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #70757a !important;
+}
+
+/* Buttons */
+.elementor-button, .elementor-button-text {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+}
+
+/* Navigation Menu */
+.elementor-nav-menu a, .ast-menu-shadow a {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}

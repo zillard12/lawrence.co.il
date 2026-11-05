@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="88" viewBox="0 0 220 88" class="lawrence-footer-inline-svg" role="img" aria-label="לורנס - בית לאירועי בוטיק">
+  <g text-anchor="middle">
+    <path d="M98,13 C103,4 107,4 110,13 C113,4 117,4 122,13" fill="none" stroke="#cd7a7c" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="110" cy="4.5" r="1.9" fill="#cd7a7c"/>
+    <text x="110" y="45" font-family="'fave-script-pro', 'Georgia', serif" font-weight="400" font-size="46" fill="#242424" letter-spacing="0.6">Lawrence</text>
+    <text x="110" y="58" font-family="'Noto Sans Hebrew', 'Georgia', serif" font-size="8.2" fill="#cd7a7c" letter-spacing="3.8" font-weight="700">THE PRIVATE HOUSE</text>
+    <line x1="35" y1="64.5" x2="185" y2="64.5" stroke="#cd7a7c" stroke-width="0.8" opacity="0.65"/>
+    <text x="110" y="79.5" font-family="'Noto Sans Hebrew', 'Arial', sans-serif" font-size="13" fill="#242424" letter-spacing="0.5">לורנס • בית לאירועי בוטיק</text>
+  </g>
+</svg>

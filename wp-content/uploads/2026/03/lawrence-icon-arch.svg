@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" fill="none">
+  <!-- Soft Rose Circle -->
+  <circle cx="230" cy="225" r="162" fill="#F3E3DF"/>
+  <!-- Romantic Courtyard Archway & Chandelier (offset bottom-right) -->
+  <g stroke="#5A1D2B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" transform="translate(10, 0)">
+    <!-- Outer Stone Archway -->
+    <path d="M196 392 V248 C196 184, 244 142, 304 142 C364 142, 412 184, 412 248 V392" fill="#FFFFFF" fill-opacity="0.65"/>
+    <!-- Inner Archway Line -->
+    <path d="M224 392 V252 C224 202, 260 170, 304 170 C348 170, 384 202, 384 252 V392" stroke-width="7"/>
+    <!-- Archway Keystone & Pillar Caps -->
+    <line x1="182" y1="248" x2="234" y2="248"/>
+    <line x1="374" y1="248" x2="426" y2="248"/>
+    <line x1="172" y1="392" x2="436" y2="392"/>
+    <!-- Hanging Romantic Lantern / Chandelier inside Arch -->
+    <line x1="304" y1="170" x2="304" y2="222" stroke-width="7"/>
+    <path d="M282 246 L304 222 L326 246 L316 286 H292 Z" stroke-width="7" fill="#F3E3DF"/>
+    <circle cx="304" cy="256" r="5" fill="#5A1D2B" stroke="none"/>
+    <!-- Botanical Lotus / Olive Flourish on bottom right -->
+    <path d="M384 392 C384 362, 404 344, 404 344 C404 344, 424 362, 424 392 Z" fill="#F3E3DF"/>
+    <path d="M408 392 C418 368, 444 358, 448 358 C448 358, 444 384, 422 392" fill="#F3E3DF"/>
+    <path d="M398 392 C388 368, 362 358, 358 358 C358 358, 362 384, 384 392" fill="#F3E3DF"/>
+  </g>
+</svg>
