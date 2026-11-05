@@ -2000,6 +2000,53 @@ footer #SiteFooter {
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65) !important;
   }
 
+
+
+  /* Enlarge Homepage Desktop Typography (.grid-row-text & .filledSec) */
+  @media (min-width: 768px) {
+    .home-page .grid-row-section .grid-rows .grid-row-text,
+    .grid-row-section .grid-rows .grid-row-text {
+      max-width: 580px !important;
+      width: 100% !important;
+    }
+    .home-page .grid-rows .grid-row-text h2,
+    .grid-row-section .grid-row .grid-row-cell-text h2 {
+      font-size: 3.1rem !important;
+      line-height: 1.2 !important;
+      margin-bottom: 22px !important;
+    }
+    .home-page .grid-row-section .grid-rows .grid-row-text h2::after {
+      max-width: 120px !important;
+      height: 4px !important;
+      margin-top: 16px !important;
+    }
+    .home-page .grid-rows .grid-row-text p,
+    .grid-row-section .grid-row .grid-row-cell-text p {
+      font-size: 1.32rem !important;
+      line-height: 1.8 !important;
+      margin-bottom: 14px !important;
+      color: #242424 !important;
+    }
+    .home-page .grid-rows .grid-row-text a.grid-row-button,
+    .grid-row-section .grid-row .grid-row-cell-text a.grid-row-button {
+      font-size: 1.15rem !important;
+      padding: 11px 38px !important;
+      margin-top: 28px !important;
+    }
+    .filledSec .grid-text-content h2 {
+      font-size: 3.2rem !important;
+      margin-bottom: 22px !important;
+    }
+    .filledSec .grid-text-content p {
+      font-size: 1.32rem !important;
+      line-height: 1.8 !important;
+    }
+    .filledSec a.sec-button {
+      font-size: 1.15rem !important;
+      padding: 11px 38px !important;
+    }
+  }
+
 </style>
 
 </head>
